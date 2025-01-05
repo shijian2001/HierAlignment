@@ -10,7 +10,10 @@ LOSSES = {
     ## Please add a custome loss
 }
 
+def list_losses():
+    return list(LOSSES.keys())
 
+# Abstraction
 class BaseLoss(nn.Module, ABC):
     """
     Abstract Loss Base Class
@@ -44,6 +47,7 @@ class BaseLoss(nn.Module, ABC):
         """
         pass
 
+######################################################### Implemented Loss #########################################################
 
 # Default DPO Loss
 class DefaultDPOLoss(BaseLoss):

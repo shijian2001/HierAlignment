@@ -10,7 +10,7 @@ from openrlhf.models import Actor
 from openrlhf.utils import blending_datasets, get_strategy, get_tokenizer
 
 from hierdpo import HierDPOTrainer
-from loss import LOSSES
+from loss import *
 
 
 def train(args):

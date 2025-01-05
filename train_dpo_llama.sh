@@ -21,8 +21,10 @@ train_dpo \
    --rejected_key rejected \
    --flash_attn \
    --load_checkpoint \
-   --gradient_checkpointing
    --loss default
+   --load_in_4bit
+   --gradient_checkpointing
+   --gradient_checkpointing_use_reentrant
 EOF
     # --use_wandb [WANDB_TOKENS] or True (use wandb login command)
     # --ipo [for IPO]
@@ -30,6 +32,9 @@ EOF
     # --ref_offload
     # --packing_samples
     # --nll_loss_coef (Regularization with NLL loss)
+    # --lora_rank 32
+    # --lora_alpha 64
+    # --lora_dropout 0.05
 
 
 if [[ ${1} != "slurm" ]]; then
