@@ -1,4 +1,4 @@
-# hier_alignment
+# HierAlignment
 
 ## Environment
 You can enter into the ```openrlhf``` conda env as follows:
