@@ -230,9 +230,13 @@ if __name__ == "__main__":
     parser.add_argument("--train_split", type=str, default="train", help="train split of the HF dataset")
     parser.add_argument("--eval_split", type=str, default="test", help="test split of the dataset")
 
-    parser.add_argument("--prompt_key", type=str, default=None)
-    parser.add_argument("--chosen_key", type=str, default="chosen")
-    parser.add_argument("--rejected_key", type=str, default="rejected")
+    # parser.add_argument("--prompt_key", type=str, default=None)
+    # parser.add_argument("--chosen_key", type=str, default="chosen")
+    # parser.add_argument("--rejected_key", type=str, default="rejected")
+    parser.add_argument("--conv_key", type=str, default="conversation")
+    parser.add_argument("--soap_key", type=str, default="soap_note")
+    parser.add_argument("--hw_key", type=str, default="homework")
+
     parser.add_argument("--input_template", type=str, default=None)
     parser.add_argument(
         "--apply_chat_template", action="store_true", default=False, help="Use HF tokenizer chat template"
