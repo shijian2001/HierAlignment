@@ -162,4 +162,5 @@ cython_debug/
 **/.DS_STORE
 
 checkpoint/
-test.ipynb
+test.
+instruction_templates_en.json

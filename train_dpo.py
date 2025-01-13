@@ -9,7 +9,7 @@ from openrlhf.datasets import RewardDataset
 from openrlhf.models import Actor
 from openrlhf.utils import blending_datasets, get_strategy, get_tokenizer
 
-from hierdpo import HierDPOTrainer
+from hierdpo.trainer import HierDPOTrainer
 from loss import *
 
 

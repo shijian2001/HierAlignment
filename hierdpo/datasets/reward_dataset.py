@@ -2,7 +2,7 @@ from torch.utils.data import Dataset
 from typing import Dict
 import json
 
-def make_hier_pref(data, conv_key:str, soap_key:str, hw_key:str, instruction_templates:Dict[str]):
+def make_hier_pref(data, conv_key:str, soap_key:str, hw_key:str, instruction_templates:Dict[str, str]):
 
     conversation, soap_note, homework = data[conv_key], data[soap_key], data[hw_key]
     inst_conv, inst_soap, inst_hw = instruction_templates[conv_key], instruction_templates[soap_key], instruction_templates[hw_key]
@@ -46,10 +46,8 @@ def apply_template(pref, tokenizer, apply_chat_template=None):
 
     for key in ["soap_de", "soap_in", "hw"]:
         if apply_chat_template:
-            chosen = apply_chat_template(pref[key], tokenize=False)
-            prompt = apply_chat_template(pref[key][:-1], tokenize=False, add_generation_prompt=True)
-            if chosen.startwith(tokenizer.bos_token):
-                chosen  = chosen[len(tokenizer.bos_token):]
+            chosen = apply_chat_template(pref[key], tokenize=False).rstrip("\n")
+            prompt = apply_chat_template(pref[key][:-1], tokenize=False, add_generation_prompt=True).rstrip("\n")
             if not chosen.endswith(tokenizer.eos_token):
                 chosen += " " + tokenizer.eos_token
         else:
@@ -89,9 +87,9 @@ class HierRewardDataset(Dataset):
         else:
             self.instruction_templates = None
 
-        self.conv_key = getattr(self.strategy.args, "conversation", None)
-        self.soap_key = getattr(self.strategy.args, "soap_note", None)
-        self.hw_key = getattr(self.strategy.args, "homework", None)
+        self.conv_key = getattr(self.strategy.args, "conv_key", None)
+        self.soap_key = getattr(self.strategy.args, "soap_key", None)
+        self.hw_key = getattr(self.strategy.args, "hw_key", None)
         self.apply_chat_template = getattr(self.strategy.args, "apply_chat_template", False)
 
         if self.apply_chat_template:
